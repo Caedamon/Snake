@@ -1,3 +1,9 @@
+# Ignore CMake build directory
+cmake-build-debug/
+
+# Ignore raylib dependency source if it's managed by CMake
+_deps/
+
 # Prerequisites
 *.d
 
