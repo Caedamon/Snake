@@ -28,7 +28,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a2a1ad6-54d2-48bb-8e46-148137820a16" name="Changes" comment="" />
+    <list default="true" id="9a2a1ad6-54d2-48bb-8e46-148137820a16" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,7 +41,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/cmake-build-debug/_deps/raylib-src" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/draw.h" root0="FORCE_HIGHLIGHTING" />
@@ -79,7 +81,7 @@
     "RunOnceActivity.west.config.association.type.startup.service": "true",
     "cf.first.check.clang-format": "false",
     "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "<unknown>",
+    "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Users/Frozztie/Documents/00-CLion/Snake",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -139,7 +141,7 @@
       <workItem from="1738064653621" duration="2636000" />
       <workItem from="1738067400489" duration="13515000" />
       <workItem from="1738313343320" duration="4660000" />
-      <workItem from="1738665102128" duration="935000" />
+      <workItem from="1738665102128" duration="1266000" />
     </task>
     <servers />
   </component>
