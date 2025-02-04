@@ -3,17 +3,34 @@
 #include "snake.h"
 
 #define SNAKE_MAX 100
-#define SQUARE_SIZE 20
 
 typedef struct {
     Position body[SNAKE_MAX];
     int length;
 } SnakeArray;
 
-void move_snake_array(void *snake) {
+void move_snake_array(void *snake, Direction dir) {
     SnakeArray *s = (SnakeArray *)snake;
+
+    // Shift body segments
     for (int i = s->length - 1; i > 0; i--) {
         s->body[i] = s->body[i - 1];
+    }
+
+    // Update head position based on direction
+    switch (dir) {
+        case UP:
+            s->body[0].y -= SQUARE_SIZE;
+        break;
+        case DOWN:
+            s->body[0].y += SQUARE_SIZE;
+        break;
+        case LEFT:
+            s->body[0].x -= SQUARE_SIZE;
+        break;
+        case RIGHT:
+            s->body[0].x += SQUARE_SIZE;
+        break;
     }
 }
 
@@ -27,6 +44,14 @@ void grow_snake_array(void *snake) {
 
 bool check_collision_array(void *snake) {
     SnakeArray *s = (SnakeArray *)snake;
+
+    // Check wall collision
+    if (s->body[0].x < 0 || s->body[0].x >= SCREEN_WIDTH ||
+        s->body[0].y < 0 || s->body[0].y >= SCREEN_HEIGHT) {
+        return true;
+        }
+
+    // Check self collision
     for (int i = 1; i < s->length; i++) {
         if (s->body[0].x == s->body[i].x && s->body[0].y == s->body[i].y) {
             return true;

@@ -32,10 +32,6 @@ endif()
 # Add executable
 add_executable(Snake src/main.c
         src/game.c
-        src/vector_math.c
-        src/file_io.c
-        src/draw.c
-        src/game.c
         src/main.c
         src/snake.h
         src/snake_array.c

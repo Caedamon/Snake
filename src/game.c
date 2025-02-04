@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <raylib.h>
+#include <stdlib.h>
 #include "snake.h"
 
 #define SCREEN_WIDTH 800
@@ -21,21 +22,28 @@ void run_game(SnakeInterface *interface, void *snake) {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Snake Game with raylib");
     SetTargetFPS(10);
 
+    Direction dir = RIGHT;
     SpawnFood();
 
     while (!WindowShouldClose()) {
         if (IsKeyPressed(KEY_Q)) break;
 
-        if (IsKeyPressed(KEY_UP)) ((SnakeArray *)snake)->body[0].y -= SQUARE_SIZE;
-        if (IsKeyPressed(KEY_DOWN)) ((SnakeArray *)snake)->body[0].y += SQUARE_SIZE;
-        if (IsKeyPressed(KEY_LEFT)) ((SnakeArray *)snake)->body[0].x -= SQUARE_SIZE;
-        if (IsKeyPressed(KEY_RIGHT)) ((SnakeArray *)snake)->body[0].x += SQUARE_SIZE;
+        // Handle direction input
+        if (IsKeyPressed(KEY_UP) && dir != DOWN) dir = UP;
+        if (IsKeyPressed(KEY_DOWN) && dir != UP) dir = DOWN;
+        if (IsKeyPressed(KEY_LEFT) && dir != RIGHT) dir = LEFT;
+        if (IsKeyPressed(KEY_RIGHT) && dir != LEFT) dir = RIGHT;
 
-        interface->move(snake);
+        interface->move(snake, dir);
 
         if (interface->check_collision(snake)) {
+            BeginDrawing();
+            ClearBackground(BLACK);
             DrawText("Game Over! Press R to restart.", 200, 300, 20, RED);
+            EndDrawing();
+
             if (IsKeyPressed(KEY_R)) return;
+            continue;
         }
 
         BeginDrawing();
