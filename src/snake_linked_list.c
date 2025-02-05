@@ -7,15 +7,6 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
 
-typedef struct SnakeNode {
-    Position pos;
-    struct SnakeNode *next;
-} SnakeNode;
-
-typedef struct {
-    SnakeNode *head;
-} SnakeLinkedList;
-
 void move_snake_linked(void *snake, Direction dir) {
     SnakeLinkedList *s = (SnakeLinkedList *)snake;
 

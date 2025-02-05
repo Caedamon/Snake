@@ -25,4 +25,18 @@ typedef struct {
     void (*print)(void *);
 } SnakeInterface;
 
+typedef struct {
+    Position body[100];
+    int length;
+} SnakeArray;
+
+typedef struct SnakeNode {
+    Position pos;
+    struct SnakeNode *next;
+} SnakeNode;
+
+typedef struct {
+    SnakeNode *head;
+} SnakeLinkedList;
+
 #endif

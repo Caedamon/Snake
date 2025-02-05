@@ -15,20 +15,6 @@ extern void print_snake_linked(void *);
 
 extern void run_game(SnakeInterface *, void *);
 
-typedef struct {
-    Position body[100];
-    int length;
-} SnakeArray;
-
-typedef struct SnakeNode {
-    Position pos;
-    struct SnakeNode *next;
-} SnakeNode;
-
-typedef struct {
-    SnakeNode *head;
-} SnakeLinkedList;
-
 int main() {
     char input[10];
     int choice = 0;
