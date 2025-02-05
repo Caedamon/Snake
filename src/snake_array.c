@@ -4,11 +4,6 @@
 
 #define SNAKE_MAX 100
 
-typedef struct {
-    Position body[SNAKE_MAX];
-    int length;
-} SnakeArray;
-
 void move_snake_array(void *snake, Direction dir) {
     SnakeArray *s = (SnakeArray *)snake;
 
@@ -63,6 +58,7 @@ bool check_collision_array(void *snake) {
 void print_snake_array(void *snake) {
     SnakeArray *s = (SnakeArray *)snake;
     for (int i = 0; i < s->length; i++) {
-        DrawRectangle(s->body[i].x, s->body[i].y, SQUARE_SIZE, SQUARE_SIZE, GREEN);
+        Rectangle bodySegment = {s->body[i].x, s->body[i].y, SQUARE_SIZE, SQUARE_SIZE};
+        DrawRectangleRounded(bodySegment, 0.4f, 12, PURPLE);
     }
 }

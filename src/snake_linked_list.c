@@ -34,16 +34,21 @@ void move_snake_linked(void *snake, Direction dir) {
     s->head = new_head;
 
     // Remove the tail to maintain length
-    SnakeNode *current = s->head;
-    while (current->next && current->next->next) {
-        current = current->next;
+    if (s->grow) {
+        s->head = new_head;
+    } else {
+        SnakeNode *current = s->head;
+        while (current->next && current->next->next) {
+            current = current->next;
+        }
+        free(current->next);
+        current->next = NULL;
     }
-    free(current->next);
-    current->next = NULL;
 }
 
 void grow_snake_linked(void *snake) {
-    // Growth is handled by skipping tail removal in move
+    SnakeLinkedList *s = (SnakeLinkedList *)snake;
+    s->grow = 1;
 }
 
 bool check_collision_linked(void *snake) {
@@ -67,12 +72,23 @@ bool check_collision_linked(void *snake) {
     return false;
 }
 
+void free_snake_linked(SnakeLinkedList *snake) {
+    SnakeNode *current = snake->head;
+    while (current != NULL) {
+        SnakeNode *temp = current;
+        current = current->next;
+        free(temp);
+    }
+    snake->head = NULL;
+}
+
 void print_snake_linked(void *snake) {
     SnakeLinkedList *s = (SnakeLinkedList *)snake;
     SnakeNode *current = s->head;
 
     while (current != NULL) {
-        DrawRectangle(current->pos.x, current->pos.y, SQUARE_SIZE, SQUARE_SIZE, GREEN);
+        Rectangle bodySegment = {current->pos.x, current->pos.y, SQUARE_SIZE, SQUARE_SIZE};
+        DrawRectangleRounded(bodySegment, 0.4f, 12, GREEN);  // Tubular appearance
         current = current->next;
     }
 }

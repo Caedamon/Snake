@@ -30,9 +30,9 @@ else()
 endif()
 
 # Add executable
-add_executable(Snake src/main.c
-        src/game.c
+add_executable(Snake
         src/main.c
+        src/game.c
         src/snake.h
         src/snake_array.c
         src/snake_linked_list.c

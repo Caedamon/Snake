@@ -39,7 +39,7 @@ int main() {
         snake_interface = (SnakeInterface){move_snake_array, grow_snake_array, check_collision_array, print_snake_array};
         snake = &snake_array;
     } else if (choice == 2) {
-        static SnakeLinkedList snake_linked = {NULL};
+        static SnakeLinkedList snake_linked = {NULL, 0};
         snake_linked.head = malloc(sizeof(SnakeNode));
         snake_linked.head->pos.x = 5;
         snake_linked.head->pos.y = 5;
@@ -52,5 +52,10 @@ int main() {
     }
 
     run_game(&snake_interface, snake);
+
+    // Free the linkedlist memory after game to prevent memory leaks
+    if (choice == 2) {
+        free_snake_linked((SnakeLinkedList *)snake);
+    }
     return 0;
 }

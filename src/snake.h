@@ -37,6 +37,9 @@ typedef struct SnakeNode {
 
 typedef struct {
     SnakeNode *head;
+    int grow;
 } SnakeLinkedList;
+
+void free_snake_linked(SnakeLinkedList *snake);
 
 #endif
