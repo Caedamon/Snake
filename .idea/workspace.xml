@@ -34,14 +34,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a2a1ad6-54d2-48bb-8e46-148137820a16" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/snake.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/snake.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/snake_array.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/snake_array.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/snake_linked_list.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/snake_linked_list.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +144,7 @@
       <workItem from="1738751678344" duration="3000000" />
       <workItem from="1738757264400" duration="375000" />
       <workItem from="1738757661446" duration="399000" />
-      <workItem from="1738758097443" duration="1307000" />
+      <workItem from="1738758097443" duration="2321000" />
     </task>
     <servers />
   </component>

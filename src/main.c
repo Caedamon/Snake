@@ -19,17 +19,25 @@ int main() {
     char input[10];
     int choice = 0;
 
-    printf("Choose Snake Implementation: 1-Array  2-Linked List\n");
-    fgets(input, sizeof(input), stdin);
+    while (1) {
+        printf("Choose Snake Implementation: 1-Array  2-Linked List\n");
+        if (fgets(input, sizeof(input), stdin) == NULL) {
+            printf("Please enter a valid input\n");
+            continue;
+        }
 
-    char *endptr;
-    choice = strtol(input, &endptr, 10);
+        input[strcspn(input, "\n")] = '\0';
 
-    // Check for conversion errors
-    if (endptr == input || *endptr != '\n') {
-        printf("Invalid input! Please enter 1 or 2.\n");
-        return 1;  // Exit if invalid input
+        char *endptr;
+        choice = strtol(input, &endptr, 10);
+
+        if (endptr == input || *endptr != '\0' || (choice != 1 && choice != 2)) {
+            printf("Please enter a valid input\n");
+        } else {
+            break;
+        }
     }
+
 
     SnakeInterface snake_interface;
     void *snake;
