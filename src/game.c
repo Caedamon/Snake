@@ -3,10 +3,6 @@
 #include <stdlib.h>
 #include "snake.h"
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
-#define SQUARE_SIZE 20
-
 typedef struct {
     Position position;
 } Food;
@@ -18,15 +14,21 @@ void SpawnFood() {
     food.position.y = (rand() % (SCREEN_HEIGHT / SQUARE_SIZE)) * SQUARE_SIZE;
 }
 
-void run_game(SnakeInterface *interface, void *snake) {
+void run_game(const SnakeInterface *interface, void *snake) {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Snake, With Raylib!");
     SetTargetFPS(60);
 
     Direction dir = RIGHT;
     SpawnFood();
 
+    float moveTimer = 0.0f;
+    float moveDelay = 0.15f; // Adjust this to change snake speed (lower = faster)
+
     while (!WindowShouldClose()) {
         if (IsKeyPressed(KEY_Q)) break;
+
+        // Update movement timer
+        moveTimer += GetFrameTime();
 
         // Direction Input
         if ((IsKeyPressed(KEY_UP) || IsKeyPressed(KEY_W)) && dir != DOWN) dir = UP;
@@ -34,7 +36,11 @@ void run_game(SnakeInterface *interface, void *snake) {
         if ((IsKeyPressed(KEY_LEFT) || IsKeyPressed(KEY_A)) && dir != RIGHT) dir = LEFT;
         if ((IsKeyPressed(KEY_RIGHT) || IsKeyPressed(KEY_D)) && dir != LEFT) dir = RIGHT;
 
-        interface->move(snake, dir);
+        // Move only when enough time has passed
+        if (moveTimer >= moveDelay) {
+            moveTimer = 0.0f;  // Reset timer
+            interface->move(snake, dir);
+        }
 
         // Food Collision
         Position *snake_head;
@@ -47,6 +53,10 @@ void run_game(SnakeInterface *interface, void *snake) {
         if (snake_head->x == food.position.x && snake_head->y == food.position.y) {
             interface->grow(snake);
             SpawnFood();
+
+            // Increase speed by reducing moveDelay (prevent it from getting too fast)
+            moveDelay *= 0.95f;
+            if (moveDelay < 0.05f) moveDelay = 0.05f;  // Minimum speed limit
         }
 
         if (interface->check_collision(snake)) {

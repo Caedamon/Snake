@@ -3,12 +3,12 @@
 #include <string.h>
 #include "snake.h"
 
-extern void move_snake_array(void *);
+extern void move_snake_array(void *, Direction);
 extern void grow_snake_array(void *);
 extern bool check_collision_array(void *);
 extern void print_snake_array(void *);
 
-extern void move_snake_linked(void *);
+extern void move_snake_linked(void *, Direction);
 extern void grow_snake_linked(void *);
 extern bool check_collision_linked(void *);
 extern void print_snake_linked(void *);
@@ -42,17 +42,24 @@ int main() {
     SnakeInterface snake_interface;
     void *snake;
 
+    // Calculate the center of the screen
+    int center_x = (SCREEN_WIDTH / 2 / SQUARE_SIZE) * SQUARE_SIZE;
+    int center_y = (SCREEN_HEIGHT / 2 / SQUARE_SIZE) * SQUARE_SIZE;
+
     if (choice == 1) {
-        static SnakeArray snake_array = {{{5, 5}}, 1};
-        snake_interface = (SnakeInterface){move_snake_array, grow_snake_array, check_collision_array, print_snake_array};
+        static SnakeArray snake_array = {{{0, 0}}, 1};  // Temporary valid initialization
+        snake_array.body[0].x = center_x;  // ✅ Assign runtime values after declaration
+        snake_array.body[0].y = center_y;
+
+        snake_interface = (SnakeInterface){(void (*)(void *, Direction))move_snake_array, grow_snake_array, check_collision_array, print_snake_array};
         snake = &snake_array;
     } else if (choice == 2) {
         static SnakeLinkedList snake_linked = {NULL, 0};
         snake_linked.head = malloc(sizeof(SnakeNode));
-        snake_linked.head->pos.x = 5;
-        snake_linked.head->pos.y = 5;
+        snake_linked.head->pos.x = center_x;
+        snake_linked.head->pos.y = center_y;
         snake_linked.head->next = NULL;
-        snake_interface = (SnakeInterface){move_snake_linked, grow_snake_linked, check_collision_linked, print_snake_linked};
+        snake_interface = (SnakeInterface){(void (*)(void *, Direction))move_snake_linked, grow_snake_linked, check_collision_linked, print_snake_linked};
         snake = &snake_linked;
     } else {
         printf("Invalid choice! Please enter 1 or 2.\n");

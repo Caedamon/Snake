@@ -42,4 +42,16 @@ typedef struct {
 
 void free_snake_linked(SnakeLinkedList *snake);
 
+void move_snake_array(void *snake, Direction dir);
+void grow_snake_array(void *snake);
+bool check_collision_array(void *snake);
+void print_snake_array(void *snake);
+
+void move_snake_linked(void *snake, Direction dir);
+void grow_snake_linked(void *snake);
+bool check_collision_linked(void *snake);
+void print_snake_linked(void *snake);
+
+void free_snake_linked(SnakeLinkedList *snake);
+
 #endif
